@@ -21,11 +21,9 @@ router.get('/', function(req, res, next) {
 /* GET checked out loans page. */
 router.get('/checked_out', function(req, res, next) {
   Loan.findAll({
-    where: {
-      returned_on: {
-        $not: null
-      }
-    }
+    include: [{
+      all: true
+    }]
   }).then(function(results) {
     res.render('checked_loans', {
       loans: results,
@@ -37,12 +35,9 @@ router.get('/checked_out', function(req, res, next) {
 /* GET overdue loans page. */
 router.get('/overdue', function(req, res, next) {
   Loan.findAll({
-    where: {
-      return_by: {
-        $lt: Date()
-      },
-      returned_on: null
-    }
+    include: [{
+      all: true
+    }]
   }).then(function(results) {
     res.render('overdue_loans', {
       loans: results,

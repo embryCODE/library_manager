@@ -21,33 +21,14 @@ table
       th Returned on
       th Action
   tbody
-    tr
-      td
-        a(href='book_detail.html') Harry Potter and the Goblet of Fire
-      td
-        a(href='patron_detail.html') Andrew Chalkley
-      td 2015-12-11
-      td 2015-12-18
-      td
-      td
-        a.button(href='return_book.html') Return Book
-    tr
-      td
-        a(href='book_detail.html') A Brief History of Time
-      td
-        a(href='patron_detail.html') Andrew Chalkley
-      td 2015-12-12
-      td 2015-12-19
-      td
-      td
-        a.button(href='return_book.html') Return Book
-    tr
-      td
-        a(href='book_detail.html') The Universe in a Nutshell
-      td
-        a(href='patron_detail.html') Alena Holligan
-      td 2015-12-13
-      td 2015-12-20
-      td
-      td
-        a.button(href='return_book.html') Return Book
+    each loan in loans
+      tr
+        td
+          a(href="FIX THIS") #{loan.Book.title}
+        td
+          a(href="FIX THIS") #{loan.Patron.first_name} #{loan.Patron.last_name}
+        td #{loan.loaned_on}
+        td #{loan.return_by}
+        td #{loan.returned_on}
+        td
+          a.button(href='return_book.html') Return Book
