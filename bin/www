@@ -9,7 +9,7 @@
 var app = require('../app');
 var debug = require('debug')('portfolio10-library-manager:server');
 var http = require('http');
-var dbConnection = require("../models/index").sequelize;
+var dbConnection = require("../models").sequelize;
 
 /**
  * Get port from environment and store in Express.
