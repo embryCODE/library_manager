@@ -1,122 +1,110 @@
-doctype html
-html
-  head
-    title= title
-    link(rel='stylesheet', href='stylesheets/style.css')
-  nav
-    ul
-      li
-        a(href='all_books.html') Books
-      li
-        a(href='all_patrons.html') Patrons
-      li
-        a(href='all_loans.html') Loans
-  body
-    h1 Books
-    p
-      a.button(href='new_book.html') Create New Book
-    p
-      | Filters
-      a(href='all_books.html') All
-      |
-      a(href='overdue_books.html') Overdue
-      |
-      a(href='checked_books.html') Checked Out
-    table
-      thead
-        tr
-          th Title
-          th Author
-          th Genre
-          th Year Released
-      tbody
-        tr
-          td
-            a(href='book_detail.html') Harry Potter and the Philosopher's Stone
-          td J.K. Rowling
-          td Fantasy
-          td 1997
-        tr
-          td
-            a(href='book_detail.html') Harry Potter and the Chamber of Secrets
-          td J.K. Rowling
-          td Fantasy
-          td 1998
-        tr
-          td
-            a(href='book_detail.html') Harry Potter and the Prisoner of Azkaban
-          td J.K. Rowling
-          td Fantasy
-          td 1999
-        tr
-          td
-            a(href='book_detail.html') Harry Potter and the Goblet of Fire
-          td J.K. Rowling
-          td Fantasy
-          td 2000
-        tr
-          td
-            a(href='book_detail.html') Harry Potter and the Order of the Phoenix
-          td J.K. Rowling
-          td Fantasy
-          td 2003
-        tr
-          td
-            a(href='book_detail.html') Harry Potter and the Half-Blood Prince
-          td J.K. Rowling
-          td Fantasy
-          td 2005
-        tr
-          td
-            a(href='book_detail.html') Harry Potter and the Deathly Hallows
-          td J.K. Rowling
-          td Fantasy
-          td 2007
-        tr
-          td
-            a(href='book_detail.html') A Brief History of Time
-          td Stephen Hawking
-          td Non Fiction
-          td 1988
-        tr
-          td
-            a(href='book_detail.html') The Universe in a Nutshell
-          td Stephen Hawking
-          td Non Fiction
-          td 2001
-        tr
-          td
-            a(href='book_detail.html') Frankenstein
-          td Mary Shelley
-          td Horror
-          td 1818
-        tr
-          td
-            a(href='book_detail.html') The Martian
-          td Andy Weir
-          td Science Fiction
-          td 2014
-        tr
-          td
-            a(href='book_detail.html') Ready Player One
-          td Ernest Cline
-          td Science Fiction
-          td 2011
-        tr
-          td
-            a(href='book_detail.html') Armada
-          td Ernest Cline
-          td Science Fiction
-          td 2015
-        tr
-          td
-            a(href='book_detail.html') Pride and Prejudice
-          td Jane Austen
-          td Classic
-          td 1813
-        tr
-          td
-            a(href='book_detail.html') Emma
-          td Jane Austen
-          td Classic
-          td 1815
+include partials/_head
+include partials/_nav
+
+body
+  h1 Books
+  p
+    a.button(href='new_book.html') Create New Book
+  p
+    | Filters
+    a(href='all_books.html')  All |
+    a(href='overdue_books.html')  Overdue |
+    a(href='checked_books.html')  Checked Out
+  table
+    thead
+      tr
+        th Title
+        th Author
+        th Genre
+        th Year Released
+    tbody
+      tr
+        td
+          a(href='book_detail.html') Harry Potter and the Philosopher's Stone
+        td J.K. Rowling
+        td Fantasy
+        td 1997
+      tr
+        td
+          a(href='book_detail.html') Harry Potter and the Chamber of Secrets
+        td J.K. Rowling
+        td Fantasy
+        td 1998
+      tr
+        td
+          a(href='book_detail.html') Harry Potter and the Prisoner of Azkaban
+        td J.K. Rowling
+        td Fantasy
+        td 1999
+      tr
+        td
+          a(href='book_detail.html') Harry Potter and the Goblet of Fire
+        td J.K. Rowling
+        td Fantasy
+        td 2000
+      tr
+        td
+          a(href='book_detail.html') Harry Potter and the Order of the Phoenix
+        td J.K. Rowling
+        td Fantasy
+        td 2003
+      tr
+        td
+          a(href='book_detail.html') Harry Potter and the Half-Blood Prince
+        td J.K. Rowling
+        td Fantasy
+        td 2005
+      tr
+        td
+          a(href='book_detail.html') Harry Potter and the Deathly Hallows
+        td J.K. Rowling
+        td Fantasy
+        td 2007
+      tr
+        td
+          a(href='book_detail.html') A Brief History of Time
+        td Stephen Hawking
+        td Non Fiction
+        td 1988
+      tr
+        td
+          a(href='book_detail.html') The Universe in a Nutshell
+        td Stephen Hawking
+        td Non Fiction
+        td 2001
+      tr
+        td
+          a(href='book_detail.html') Frankenstein
+        td Mary Shelley
+        td Horror
+        td 1818
+      tr
+        td
+          a(href='book_detail.html') The Martian
+        td Andy Weir
+        td Science Fiction
+        td 2014
+      tr
+        td
+          a(href='book_detail.html') Ready Player One
+        td Ernest Cline
+        td Science Fiction
+        td 2011
+      tr
+        td
+          a(href='book_detail.html') Armada
+        td Ernest Cline
+        td Science Fiction
+        td 2015
+      tr
+        td
+          a(href='book_detail.html') Pride and Prejudice
+        td Jane Austen
+        td Classic
+        td 1813
+      tr
+        td
+          a(href='book_detail.html') Emma
+        td Jane Austen
+        td Classic
+        td 1815
