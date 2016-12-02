@@ -2,10 +2,13 @@
 
 var express = require('express');
 var router = express.Router();
+var Patron = require('../models/index').Patron;
 
-/* GET books page. */
+/* GET patrons page. */
 router.get('/', function(req, res, next) {
-  res.render('all_patrons', { title: 'Patrons' });
+  Patron.findAll().then(function(patrons) {
+    res.render('all_patrons', { patrons: patrons, title: 'Patrons' });
+  });
 });
 
 module.exports = router;

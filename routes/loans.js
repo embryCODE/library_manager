@@ -2,10 +2,13 @@
 
 var express = require('express');
 var router = express.Router();
+var Loan = require('../models/index').Loan;
 
-/* GET books page. */
+/* GET loans page. */
 router.get('/', function(req, res, next) {
-  res.render('all_loans', { title: 'Loans' });
+  Loan.findAll().then(function(loans) {
+    res.render('all_loans', { loans: loans, title: 'Loans' });
+  });
 });
 
 module.exports = router;
