@@ -4,12 +4,12 @@ include partials/_nav
 body
   h1 Books
   p
-    a.button(href='new_book.html') Create New Book
+    a.button(href='/books/new') Create New Book
   p
     | Filters
-    a(href='all_books.html')  All |
-    a(href='overdue_books.html')  Overdue |
-    a(href='checked_books.html')  Checked Out
+    a(href='/books')  All |
+    a(href='/books/overdue')  Overdue |
+    a(href='/books/checked_out')  Checked Out
   table
     thead
       tr

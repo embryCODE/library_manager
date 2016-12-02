@@ -11,4 +11,18 @@ router.get('/', function(req, res, next) {
   });
 });
 
+/* GET checked out loans page. */
+router.get('/checked_out', function(req, res, next) {
+
+    res.render('checked_loans', { title: "Checked Out Loans"});
+
+});
+
+/* GET overdue loans page. */
+router.get('/overdue', function(req, res, next) {
+
+    res.render('overdue_loans', { title: "Overdue Loans"});
+
+});
+
 module.exports = router;
