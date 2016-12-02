@@ -1,0 +1,31 @@
+doctype html
+head
+  title Return Book
+  link(rel='stylesheet', href='stylesheets/style.css')
+nav
+  ul
+    li
+      a(href='all_books.html') Books
+    li
+      a(href='all_patrons.html') Patrons
+    li
+      a(href='all_loans.html') Loans
+h1 Patron: Return Book
+p
+  strong Book Title:
+  | Harry Potter and the Goblet of Fire
+p
+  strong Loaned By:
+  | Andrew Chalkley
+p
+  strong Loaned On:
+  | 2015-12-11
+p
+  strong Return By:
+  | 2015-12-18
+form
+  p
+    label(for='returned_on') Returned on:
+    input#returned_on(type='text', value='2020-10-10')
+  p
+    input(type='submit', value='Return Book')

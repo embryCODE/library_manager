@@ -1,0 +1,62 @@
+doctype html
+head
+  title Overdue Loans
+  link(rel='stylesheet', href='stylesheets/style.css')
+nav
+  ul
+    li
+      a(href='all_books.html') Books
+    li
+      a(href='all_patrons.html') Patrons
+    li
+      a(href='all_loans.html') Loans
+h1 Overdue Loans
+p
+  a.button(href='new_loan.html') Create New Loan
+p
+  | Filters
+  a(href='all_loans.html') All
+  |  |
+  a(href='overdue_loans.html') Overdue
+  |  |
+  a(href='checked_loans.html') Checked Out
+table
+  thead
+    tr
+      th Book
+      th Patron
+      th Loaned on
+      th Return by
+      th Returned on
+      th Action
+  tbody
+    tr
+      td
+        a(href='book_detail.html') Harry Potter and the Goblet of Fire
+      td
+        a(href='patron_detail.html') Andrew Chalkley
+      td 2015-12-11
+      td 2015-12-18
+      td
+      td
+        a.button(href='return_book.html') Return Book
+    tr
+      td
+        a(href='book_detail.html') A Brief History of Time
+      td
+        a(href='patron_detail.html') Andrew Chalkley
+      td 2015-12-12
+      td 2015-12-19
+      td
+      td
+        a.button(href='return_book.html') Return Book
+    tr
+      td
+        a(href='book_detail.html') The Universe in a Nutshell
+      td
+        a(href='patron_detail.html') Alena Holligan
+      td 2015-12-13
+      td 2015-12-20
+      td
+      td
+        a.button(href='return_book.html') Return Book

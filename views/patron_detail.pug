@@ -1,0 +1,65 @@
+doctype html
+head
+  title Andrew Chalkley
+  link(rel='stylesheet', href='stylesheets/style.css')
+nav
+  ul
+    li
+      a(href='all_books.html') Books
+    li
+      a(href='all_patrons.html') Patrons
+    li
+      a(href='all_loans.html') Loans
+h1 Patron: Andrew Chalkley
+form
+  p
+    label(for='first_name') First Name
+    input#first_name(type='text', value='Andrew')
+  p
+    label(for='last_name') Last Name
+    input#last_name(type='text', value='Chalkley')
+  p
+    label(for='address')  Address
+    input#address(type='text', value='1234 NE 20st St')
+  p
+    label(for='email') Email
+    input#email(type='text', value='andrew.chalkley@teamtreehouse.com')
+  p
+    label(for='library_id') Library ID
+    input#library_id(type='text', value='MCL1001')
+  p
+    label(for='zip_code') Zip Code
+    input#zip_code(type='text', value='90210')
+  p
+    input(type='submit', value='Update')
+h2 Loan History
+table
+  thead
+    tr
+      th Book
+      th Patron
+      th Loaned on
+      th Return by
+      th Returned on
+      th Action
+  tbody
+    tr
+      td
+        a(href='book_detail.html') Harry Potter and the Goblet of Fire
+      td
+        a(href='patron_detail.html') Andrew Chalkley
+      td 2015-12-11
+      td 2015-12-18
+      td
+      td
+        a.button(href='return_book.html') Return Book
+    tr
+      td
+        a(href='book_detail.html') A Brief History of Time
+      td
+        a(href='patron_detail.html') Andrew Chalkley
+      td 2015-12-12
+      td 2015-12-19
+      td
+      td
+        a.button(href='return_book.html') Return Book
