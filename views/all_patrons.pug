@@ -3,7 +3,7 @@ include partials/_nav
 
 h1 Patrons
 p
-  a.button(href='new_patron.html') Create New Patron
+  a.button(href='/patrons/new') Create New Patron
 table
   thead
     tr
@@ -16,7 +16,7 @@ table
     each patron in patrons
       tr
         td
-          a(href='FIX THIS') #{patron.first_name} #{patron.last_name}
+          a(href='/patrons/' + patron.id) #{patron.first_name} #{patron.last_name}
         td #{patron.address}
         td #{patron.email}
         td #{patron.library_id}

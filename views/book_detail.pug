@@ -1,20 +1,20 @@
 include partials/_head
 include partials/_nav
 
-h1 Book: A Brief History of Time
-form
+h1 Book: #{book.title}
+form(action="?_method=PUT" method="post")
   p
     label(for='title') Title
-    input#title(type='text', value=book.title)
+    input#title(type='text' value=book.title name='title')
   p
     label(for='author') Author
-    input#author(type='text', value=book.author)
+    input#author(type='text' value=book.author name='author')
   p
     label(for='genre') Genre
-    input#genre(type='text', value=book.genre)
+    input#genre(type='text' value=book.genre name='genre')
   p
     label(for='first_published') First Published
-    input#first_published(type='text', value=book.first_published)
+    input#first_published(type='text' value=book.first_published name='first_published')
   p
     input(type='submit', value='Update')
 h2 Loan History

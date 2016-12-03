@@ -2,6 +2,7 @@
 
 var express = require('express');
 var router = express.Router();
+
 var Book = require('../models').Book;
 var Loan = require('../models').Loan;
 var Patron = require('../models').Patron;
@@ -13,6 +14,8 @@ router.get('/', function(req, res, next) {
       books: results,
       title: 'Books'
     });
+  }).catch(function(error) {
+    res.send(500, error);
   });
 });
 
@@ -30,6 +33,8 @@ router.get('/checked_out', function(req, res, next) {
       books: results,
       title: "Checked Out Books"
     });
+  }).catch(function(error) {
+    res.send(500, error);
   });
 });
 
@@ -41,7 +46,8 @@ router.get('/overdue', function(req, res, next) {
       where: {
         return_by: {
           $lt: new Date()
-        }
+        },
+        returned_on: null
       }
     }]
   }).then(function(results) {
@@ -49,6 +55,8 @@ router.get('/overdue', function(req, res, next) {
       books: results,
       title: "Overdue Books"
     });
+  }).catch(function(error) {
+    res.send(500, error);
   });
 });
 
@@ -56,6 +64,8 @@ router.get('/overdue', function(req, res, next) {
 router.get('/new', function(req, res, next) {
   res.render('new_book', {
     title: "New Book"
+  }).catch(function(error) {
+    res.send(500, error);
   });
 });
 
@@ -63,6 +73,8 @@ router.get('/new', function(req, res, next) {
 router.post('/new', function(req, res, next) {
   Book.create(req.body).then(function(book) {
     res.redirect("/books/" + book.id);
+  }).catch(function(error) {
+    res.send(500, error);
   });
 });
 
@@ -77,6 +89,29 @@ router.get('/:id', function(req, res, next) {
     } else {
       res.sendStatus(404);
     }
+  }).catch(function(error) {
+    res.send(500, error);
+  });
+});
+
+/** PUT edit book */
+router.put('/:id', function(req, res, next) {
+  Book.findById(req.params.id).then(function(results) {
+    if (results) {
+      return Book.update(req.body, {
+        where: {
+          id: req.params.id
+        }
+      });
+    } else {
+      res.send(404);
+    }
+  }).then(function(results) {
+    res.redirect("/books/" + req.params.id);
+  }).catch(
+    // validation errors go here
+  ).catch(function(error) {
+    res.send(500, error);
   });
 });
 

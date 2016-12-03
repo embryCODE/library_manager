@@ -22,7 +22,7 @@ table
     each book in books
       tr
         td
-          a(href="FIX THIS") #{book.title}
+          a(href="/books/" + book.id) #{book.title}
         td #{book.author}
         td #{book.genre}
         td #{book.first_published}
