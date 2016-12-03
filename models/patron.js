@@ -6,7 +6,7 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING,
       validate: {
         notEmpty: {
-          msg: "First Name is required"
+          msg: "First name is required"
         }
       }
     },
@@ -14,7 +14,7 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING,
       validate: {
         notEmpty: {
-          msg: "Last Name is required"
+          msg: "Last name is required"
         }
       }
     },
@@ -29,8 +29,8 @@ module.exports = function(sequelize, DataTypes) {
     email: {
       type: DataTypes.STRING,
       validate: {
-        notEmpty: {
-          msg: "Email is required"
+        isEmail: {
+          msg: "A valid email address is required"
         }
       }
     },
@@ -46,7 +46,11 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.INTEGER,
       validate: {
         notEmpty: {
-          msg: "Zip Code is required"
+          msg: "Zip code is required"
+        },
+        len: {
+          args: [5],
+          msg: "A valid zip code is required"
         }
       }
     },

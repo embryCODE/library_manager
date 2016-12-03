@@ -29,17 +29,17 @@ router.get('/new', function(req, res, next) {
 });
 
 /** POST create new patron. */
-// router.post('/new', function(req, res, next) {
-//   Book.create(req.body).then(function(book) {
-//     res.redirect("/books/" + book.id);
-//   }).catch(function(error){
-//       res.send(500, error);
-//    });
-// });
+router.post('/new', function(req, res, next) {
+  Patron.create(req.body).then(function(results) {
+    res.redirect("/patrons/" + results.id);
+  }).catch(function(error) {
+    res.send(500, error);
+  });
+});
 
 /** GET patron detail page. */
 router.get('/:id', function(req, res, next) {
-  Book.findById(req.params.id).then(function(results) {
+  Patron.findById(req.params.id).then(function(results) {
     if (results) {
       res.render('patron_detail', {
         patron: results,
@@ -51,6 +51,27 @@ router.get('/:id', function(req, res, next) {
   }).catch(function(error){
       res.send(500, error);
    });
+});
+
+/** PUT edit patron */
+router.put('/:id', function(req, res, next) {
+  Patron.findById(req.params.id).then(function(results) {
+    if (results) {
+      return Patron.update(req.body, {
+        where: {
+          id: req.params.id
+        }
+      });
+    } else {
+      res.send(404);
+    }
+  }).then(function(results) {
+    res.redirect("/patrons/" + req.params.id);
+  }).catch(
+    // validation errors go here
+  ).catch(function(error) {
+    res.send(500, error);
+  });
 });
 
 module.exports = router;

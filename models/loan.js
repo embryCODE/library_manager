@@ -22,7 +22,7 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.DATE,
       validate: {
         notEmpty: {
-          msg: "Loaned On Date is required"
+          msg: "Loaned On date is required"
         }
       }
     },
@@ -30,7 +30,7 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.DATE,
       validate: {
         notEmpty: {
-          msg: "Return By Date is required"
+          msg: "Return By date is required"
         }
       }
     },
