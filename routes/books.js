@@ -4,6 +4,7 @@ var express = require('express');
 var router = express.Router();
 var Book = require('../models').Book;
 var Loan = require('../models').Loan;
+var Patron = require('../models').Patron;
 
 /** GET books page. */
 router.get('/', function(req, res, next) {
@@ -67,15 +68,14 @@ router.post('/new', function(req, res, next) {
 
 /** GET book detail page */
 router.get('/:id', function(req, res, next) {
-  Book.findById(req.params.id, {
-    include: [{
-      all: true
-    }]
-  }).then(function(results) {
+  Book.findById(req.params.id).then(function(results) {
     if (results) {
-      res.render('book_detail', { book: results, title: results.title});
+      res.render('book_detail', {
+        book: results,
+        title: results.title
+      });
     } else {
-      res.send(404);
+      res.sendStatus(404);
     }
   });
 });

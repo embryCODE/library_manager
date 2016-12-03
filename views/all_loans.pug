@@ -24,9 +24,9 @@ table
     each loan in loans
       tr
         td
-          a(href="FIX THIS") #{loan.Book.title}
+          a(href="/books/" + loan.Book.id) #{loan.Book.title}
         td
-          a(href="FIX THIS") #{loan.Patron.first_name} #{loan.Patron.last_name}
+          a(href="/patrons/" + loan.Patron.id) #{loan.Patron.first_name} #{loan.Patron.last_name}
         td #{loan.loaned_on}
         td #{loan.return_by}
         td #{loan.returned_on}
