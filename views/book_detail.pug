@@ -5,16 +5,16 @@ h1 Book: A Brief History of Time
 form
   p
     label(for='title') Title
-    input#title(type='text', value='A Brief History of Time')
+    input#title(type='text', value=book.title)
   p
     label(for='author') Author
-    input#author(type='text', value='Stephen Hawking')
+    input#author(type='text', value=book.author)
   p
     label(for='genre') Genre
-    input#genre(type='text', value='Non Fiction')
+    input#genre(type='text', value=book.genre)
   p
     label(for='first_published') First Published
-    input#first_published(type='text', value='1988')
+    input#first_published(type='text', value=book.first_published)
   p
     input(type='submit', value='Update')
 h2 Loan History
@@ -30,11 +30,11 @@ table
   tbody
     tr
       td
-        a(href='book_detail.html') A Brief History of Time
+        a(href=book.id) placeholder
       td
-        a(href='patron_detail.html') Andrew Chalkley
-      td 2015-12-12
-      td 2015-12-19
+        a(href="FIX THIS") placeholder
+      td placeholder
+      td placeholder
       td
       td
         a.button(href='return_book.html') Return Book

@@ -65,4 +65,19 @@ router.post('/new', function(req, res, next) {
   });
 });
 
+/** GET book detail page */
+router.get('/:id', function(req, res, next) {
+  Book.findById(req.params.id, {
+    include: [{
+      all: true
+    }]
+  }).then(function(results) {
+    if (results) {
+      res.render('book_detail', { book: results, title: results.title});
+    } else {
+      res.send(404);
+    }
+  });
+});
+
 module.exports = router;
