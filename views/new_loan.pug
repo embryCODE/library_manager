@@ -6,21 +6,8 @@ form(method="post")
   p
     label(for='book_id') Book
     select#book_id
-      option(value='1') Harry Potter and the Philosopher's Stone
-      option(value='2') Harry Potter and the Chamber of Secrets
-      option(value='3') Harry Potter and the Prisoner of Azkaban
-      option(value='4') Harry Potter and the Goblet of Fire
-      option(value='5') Harry Potter and the Order of the Phoenix
-      option(value='6') Harry Potter and the Half-Blood Prince
-      option(value='7') Harry Potter and the Deathly Hallows
-      option(value='8') A Brief History of Time
-      option(value='9') The Universe in a Nutshell
-      option(value='10') Frankenstein
-      option(value='11') The Martian
-      option(value='12') Ready Player One
-      option(value='13') Armada
-      option(value='14') Pride and Prejudice
-      option(value='15') Emma
+      each book in books
+        option(value=book.id) #{book.title}
   p
     label(for='patron_id') Patron
     select#patron_id

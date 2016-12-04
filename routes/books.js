@@ -80,7 +80,9 @@ router.post('/new', function(req, res, next) {
 
 /** GET book detail page */
 router.get('/:id', function(req, res, next) {
-  Book.findById(req.params.id).then(function(results) {
+  Book.findById(req.params.id, {
+    include: { model: Loan, include: { model: Patron } }
+  }).then(function(results) {
     if (results) {
       res.render('book_detail', {
         book: results,

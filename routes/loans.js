@@ -66,10 +66,13 @@ router.get('/overdue', function(req, res, next) {
 
 /** GET new loan form page. */
 router.get('/new', function(req, res, next) {
-  res.render('new_loan', {
-    title: "New Loan"
-  }).catch(function(error) {
-    res.send(500, error);
+  Book.findAll().then(function(results) {
+    res.render('new_loan', {
+      books: results,
+      title: "New Loan"
+    }).catch(function(error) {
+      res.send(500, error);
+    });
   });
 });
 
