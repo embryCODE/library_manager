@@ -98,4 +98,26 @@ router.post('/new', function(req, res, next) {
   });
 });
 
+/** GET return book */
+router.get('/return/:id', function(req, res, next) {
+
+  Loan.update({
+      returned_on: moment().format('YYYY-MM-DD')
+    }, {
+      where: {
+        book_id: req.params.id
+      }
+    })
+    .then(function(response) {
+      res.redirect('/loans');
+    })
+    .catch(function(error) {
+      res.send(500, error);
+    });
+});
+
+
+
+
+
 module.exports = router;
