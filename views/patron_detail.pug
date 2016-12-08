@@ -34,13 +34,14 @@ table
       th Returned on
       th Action
   tbody
-    tr
-      td
-        a(href='book_detail.html') placeholder
-      td
-        a(href='patron_detail.html') placeholder
-      td placeholder
-      td placeholder
-      td
-      td
-        a.button(href='return_book.html') Return Book
+    each loan in patron.Loans
+      tr
+        td
+          a(href=loan.Book.id) #{loan.Book.title}
+        td
+          a(href='/patrons/' + patron.id) #{patron.first_name} #{patron.last_name}
+        td #{loan.loaned_on}
+        td #{loan.return_by}
+        td #{loan.returned_on}
+        td
+          a.button(href='return_book.html') Return Book

@@ -46,7 +46,7 @@ router.get('/overdue', function(req, res, next) {
       model: Loan,
       where: {
         return_by: {
-          $lt: new Date()
+          $lt: moment().format('YYYY-MM-DD')
         },
         returned_on: null
       }

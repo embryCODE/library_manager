@@ -14,18 +14,18 @@ router.get('/', function(req, res, next) {
       patrons: patrons,
       title: 'Patrons'
     });
-  }).catch(function(error){
-      res.send(500, error);
-   });
+  }).catch(function(error) {
+    res.send(500, error);
+  });
 });
 
 /** GET new patron form page. */
 router.get('/new', function(req, res, next) {
   res.render('new_patron', {
     title: "New Patron"
-  }).catch(function(error){
-      res.send(500, error);
-   });
+  }).catch(function(error) {
+    res.send(500, error);
+  });
 });
 
 /** POST create new patron. */
@@ -39,7 +39,14 @@ router.post('/new', function(req, res, next) {
 
 /** GET patron detail page. */
 router.get('/:id', function(req, res, next) {
-  Patron.findById(req.params.id).then(function(results) {
+  Patron.findById(req.params.id, {
+    include: {
+      model: Loan,
+      include: {
+        model: Book
+      }
+    }
+  }).then(function(results) {
     if (results) {
       res.render('patron_detail', {
         patron: results,
@@ -48,9 +55,9 @@ router.get('/:id', function(req, res, next) {
     } else {
       res.sendStatus(404);
     }
-  }).catch(function(error){
-      res.send(500, error);
-   });
+  }).catch(function(error) {
+    res.send(500, error);
+  });
 });
 
 /** PUT edit patron */

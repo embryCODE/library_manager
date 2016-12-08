@@ -82,9 +82,9 @@ router.get('/new', function(req, res, next) {
         loaned_on: moment().format('YYYY-MM-DD'),
         return_by: moment().add(7, 'days').format('YYYY-MM-DD'),
         title: "New Loan"
-      }).catch(function(error) {
-        res.send(500, error);
       });
+    }).catch(function(error) {
+      res.send(500, error);
     })
   );
 });
