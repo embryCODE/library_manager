@@ -2,6 +2,7 @@
 
 var express = require('express');
 var router = express.Router();
+var moment = require('moment');
 
 var Book = require('../models').Book;
 var Loan = require('../models').Loan;
@@ -50,7 +51,7 @@ router.get('/overdue', function(req, res, next) {
     }],
     where: {
       return_by: {
-        $lt: new Date()
+        $lt: moment().format('YYYY-MM-DD')
       },
       returned_on: null
     }
@@ -78,8 +79,8 @@ router.get('/new', function(req, res, next) {
       res.render('new_loan', {
         books: allBooks,
         patrons: allPatrons,
-        loaned_on: Date(),
-        return_by: Date(),
+        loaned_on: moment().format('YYYY-MM-DD'),
+        return_by: moment().add(7, 'days').format('YYYY-MM-DD'),
         title: "New Loan"
       }).catch(function(error) {
         res.send(500, error);

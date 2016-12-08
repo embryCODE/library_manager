@@ -2,6 +2,7 @@
 
 var express = require('express');
 var router = express.Router();
+var moment = require('moment');
 
 var Book = require('../models').Book;
 var Loan = require('../models').Loan;
