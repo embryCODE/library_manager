@@ -31,7 +31,7 @@ router.get('/new', function(req, res, next) {
 /** POST create new patron. */
 router.post('/new', function(req, res, next) {
   Patron.create(req.body).then(function(results) {
-    res.redirect("/patrons/" + results.id);
+    res.redirect("/patrons/");
   }).catch(function(error) {
     if (error.name === 'SequelizeValidationError') {
       res.render('error', {
@@ -78,7 +78,7 @@ router.put('/:id', function(req, res, next) {
       res.send(404);
     }
   }).then(function(results) {
-    res.redirect("/patrons/" + req.params.id);
+    res.redirect("/patrons/");
   }).catch(function(error) {
     if (error.name === 'SequelizeValidationError') {
       res.render('error', {
