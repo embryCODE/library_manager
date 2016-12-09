@@ -3,7 +3,7 @@ include partials/_nav
 
 h1 Overdue Loans
 p
-  a.button(href='new_loan.html') Create New Loan
+  a.button(href='/loans/new') Create New Loan
 p
   | Filters
   a(href='/loans')  All
@@ -31,4 +31,4 @@ table
         td #{loan.return_by}
         td #{loan.returned_on}
         td
-          a.button(href='/loans/return/' + loan.Book.id) Return Book
+          a.button(href='/books/' + loan.Book.id + '/return') Return Book

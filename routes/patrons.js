@@ -40,12 +40,12 @@ router.post('/new', function(req, res, next) {
 /** GET patron detail page. */
 router.get('/:id', function(req, res, next) {
   Patron.findById(req.params.id, {
-    include: {
+    include: [{
       model: Loan,
       include: {
         model: Book
       }
-    }
+    }]
   }).then(function(results) {
     if (results) {
       res.render('patron_detail', {

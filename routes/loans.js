@@ -31,7 +31,7 @@ router.get('/checked_out', function(req, res, next) {
       all: true
     }],
     where: {
-      returned_on: null
+      returned_on: ''
     }
   }).then(function(results) {
     res.render('checked_loans', {
@@ -53,7 +53,7 @@ router.get('/overdue', function(req, res, next) {
       return_by: {
         $lt: moment().format('YYYY-MM-DD')
       },
-      returned_on: null
+      returned_on: ''
     }
   }).then(function(results) {
     res.render('overdue_loans', {
@@ -97,27 +97,5 @@ router.post('/new', function(req, res, next) {
     res.send(500, error);
   });
 });
-
-/** GET return book */
-router.get('/return/:id', function(req, res, next) {
-
-  Loan.update({
-      returned_on: moment().format('YYYY-MM-DD')
-    }, {
-      where: {
-        book_id: req.params.id
-      }
-    })
-    .then(function(response) {
-      res.redirect('/loans');
-    })
-    .catch(function(error) {
-      res.send(500, error);
-    });
-});
-
-
-
-
 
 module.exports = router;

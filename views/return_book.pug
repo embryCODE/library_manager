@@ -1,22 +1,22 @@
 include partials/_head
 include partials/_nav
 
-h1 Patron: Return Book
+h1 Return Book:
 p
   strong Book Title:
-  | Harry Potter and the Goblet of Fire
+  |  #{loan.Book.title}
 p
   strong Loaned By:
-  | Andrew Chalkley
+  |  #{loan.Patron.first_name} #{loan.Patron.last_name}
 p
   strong Loaned On:
-  | 2015-12-11
+  |  #{loan.loaned_on}
 p
   strong Return By:
-  | 2015-12-18
-form
+  |  #{loan.return_by}
+form(action="?_method=PUT" method="post")
   p
     label(for='returned_on') Returned on:
-    input#returned_on(type='text', value='2020-10-10')
+    input#returned_on(type='text' value=today name="returned_on")
   p
     input(type='submit', value='Return Book')
