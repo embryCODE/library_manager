@@ -11,7 +11,7 @@ var Patron = require('../models').Patron;
 /** GET books page. */
 router.get('/', function(req, res, next) {
   Book.findAll().then(function(results) {
-    res.render('all_books', {
+    res.render('all_booksASDF', {
       books: results,
       title: 'Books'
     });
@@ -74,9 +74,16 @@ router.get('/new', function(req, res, next) {
 router.post('/new', function(req, res, next) {
   Book.create(req.body).then(function(results) {
     res.redirect("/books/" + results.id);
-  }).catch(
-    // validation errors go here
-  ).catch(function(error) {
+  }).catch(function(error) {
+    if (error.name === 'SequelizeValidationError') {
+      res.render('error', {
+        error: error,
+        title: "Error"
+      });
+    } else {
+      throw error;
+    }
+  }).catch(function(error) {
     res.send(500, error);
   });
 });
