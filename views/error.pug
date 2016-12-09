@@ -1,0 +1,22 @@
+include partials/_head
+include partials/_nav
+
+h1 Friendly Error Page
+form(action="/books/new" method="post")
+  h2.error Oooops!
+  ul.error
+    li #{error.message}
+  p
+    label(for='title') Title
+    input#title(type='text' name='title')
+  p
+    label(for='author') Author
+    input#author(type='text' name='author')
+  p
+    label(for='genre') Genre
+    input#genre(type='text' name='genre')
+  p
+    label(for='first_published') First Published
+    input#first_published(type='text' name='first_published')
+  p
+    input(type='submit', value='Create New Book')

@@ -1,0 +1,22 @@
+include partials/_head
+include partials/_nav
+
+h1 Return Book:
+p
+  strong Book Title:
+  |  #{loan.Book.title}
+p
+  strong Loaned By:
+  |  #{loan.Patron.first_name} #{loan.Patron.last_name}
+p
+  strong Loaned On:
+  |  #{loan.loaned_on}
+p
+  strong Return By:
+  |  #{loan.return_by}
+form(action="?_method=PUT" method="post")
+  p
+    label(for='returned_on') Returned on:
+    input#returned_on(type='text' value=today name="returned_on")
+  p
+    input(type='submit', value='Return Book')
