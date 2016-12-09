@@ -31,7 +31,9 @@ router.get('/checked_out', function(req, res, next) {
       all: true
     }],
     where: {
-      returned_on: ''
+      returned_on: {
+        $or: ['', null]
+      }
     }
   }).then(function(results) {
     res.render('checked_loans', {
@@ -51,9 +53,11 @@ router.get('/overdue', function(req, res, next) {
     }],
     where: {
       return_by: {
-        $lt: moment().format('YYYY-MM-DD')
+        $lt: moment().format('YYYY-MM-DD').toString()
       },
-      returned_on: ''
+      returned_on: {
+        $or: ['', null]
+      }
     }
   }).then(function(results) {
     res.render('overdue_loans', {
@@ -93,9 +97,16 @@ router.get('/new', function(req, res, next) {
 router.post('/new', function(req, res, next) {
   Loan.create(req.body).then(function(results) {
     res.redirect("/loans/");
-  }).catch(
-    // validation errors go here
-  ).catch(function(error) {
+  }).catch(function(error) {
+    if (error.name === 'SequelizeValidationError') {
+      res.render('error', {
+        error: error,
+        title: "Error"
+      });
+    } else {
+      throw new Error();
+    }
+  }).catch(function(error) {
     res.send(500, error);
   });
 });

@@ -11,7 +11,7 @@ var Patron = require('../models').Patron;
 /** GET books page. */
 router.get('/', function(req, res, next) {
   Book.findAll().then(function(results) {
-    res.render('all_booksASDF', {
+    res.render('all_books', {
       books: results,
       title: 'Books'
     });
@@ -26,7 +26,9 @@ router.get('/checked_out', function(req, res, next) {
     include: [{
       model: Loan,
       where: {
-        returned_on: ''
+        returned_on: {
+          $or: ['', null]
+        }
       }
     }]
   }).then(function(results) {
@@ -48,7 +50,9 @@ router.get('/overdue', function(req, res, next) {
         return_by: {
           $lt: moment().format('YYYY-MM-DD')
         },
-        returned_on: ''
+        returned_on: {
+          $or: ['', null]
+        }
       }
     }]
   }).then(function(results) {
@@ -81,7 +85,7 @@ router.post('/new', function(req, res, next) {
         title: "Error"
       });
     } else {
-      throw error;
+      throw new Error();
     }
   }).catch(function(error) {
     res.send(500, error);
@@ -125,9 +129,16 @@ router.put('/:id', function(req, res, next) {
     }
   }).then(function(results) {
     res.redirect("/books/" + req.params.id);
-  }).catch(
-    // validation errors go here
-  ).catch(function(error) {
+  }).catch(function(error) {
+    if (error.name === 'SequelizeValidationError') {
+      res.render('error', {
+        error: error,
+        title: "Error"
+      });
+    } else {
+      throw new Error();
+    }
+  }).catch(function(error) {
     res.send(500, error);
   });
 });
@@ -167,9 +178,16 @@ router.put('/:id/return', function(req, res, next) {
     }
   }).then(function(results) {
     res.redirect('/loans');
-  }).catch(
-    // validation errors go here
-  ).catch(function(error) {
+  }).catch(function(error) {
+    if (error.name === 'SequelizeValidationError') {
+      res.render('error', {
+        error: error,
+        title: "Error"
+      });
+    } else {
+      throw new Error();
+    }
+  }).catch(function(error) {
     res.send(500, error);
   });
 });
