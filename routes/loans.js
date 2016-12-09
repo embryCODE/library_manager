@@ -104,10 +104,8 @@ router.post('/new', function(req, res, next) {
         title: "Error"
       });
     } else {
-      throw new Error();
+      res.send(500, error);
     }
-  }).catch(function(error) {
-    res.send(500, error);
   });
 });
 

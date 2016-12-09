@@ -85,10 +85,8 @@ router.post('/new', function(req, res, next) {
         title: "Error"
       });
     } else {
-      throw new Error();
+      res.send(500, error);
     }
-  }).catch(function(error) {
-    res.send(500, error);
   });
 });
 
@@ -110,8 +108,6 @@ router.get('/:id', function(req, res, next) {
     } else {
       res.sendStatus(404);
     }
-  }).catch(function(error) {
-    res.send(500, error);
   });
 });
 
@@ -136,10 +132,8 @@ router.put('/:id', function(req, res, next) {
         title: "Error"
       });
     } else {
-      throw new Error();
+      res.send(500, error);
     }
-  }).catch(function(error) {
-    res.send(500, error);
   });
 });
 
@@ -185,10 +179,8 @@ router.put('/:id/return', function(req, res, next) {
         title: "Error"
       });
     } else {
-      throw new Error();
+      res.send(500, error);
     }
-  }).catch(function(error) {
-    res.send(500, error);
   });
 });
 
