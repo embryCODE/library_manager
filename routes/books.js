@@ -77,7 +77,7 @@ router.get('/new', function(req, res, next) {
 /** POST create new book. */
 router.post('/new', function(req, res, next) {
   Book.create(req.body).then(function(results) {
-    res.redirect("/books/" + results.id);
+    res.redirect("/books/");
   }).catch(function(error) {
     if (error.name === 'SequelizeValidationError') {
       res.render('error', {
@@ -124,7 +124,7 @@ router.put('/:id', function(req, res, next) {
       res.send(404);
     }
   }).then(function(results) {
-    res.redirect("/books/" + req.params.id);
+    res.redirect("/books/");
   }).catch(function(error) {
     if (error.name === 'SequelizeValidationError') {
       res.render('error', {
@@ -160,7 +160,9 @@ router.get('/:id/return', function(req, res, next) {
 /** PUT return book. */
 router.put('/:id/return', function(req, res, next) {
 
-  if (req.body.returned_on === '') {
+  var validDate = /^\d{4}[\/\-](0?[1-9]|1[012])[\/\-](0?[1-9]|[12][0-9]|3[01])$/;
+
+  if (!validDate.test(req.body.returned_on)) {
     throw new Error('A valid "Returned On" date must be entered.', {
       name: 'SequelizeValidationError'
     });
