@@ -161,7 +161,9 @@ router.get('/:id/return', function(req, res, next) {
 router.put('/:id/return', function(req, res, next) {
 
   if (req.body.returned_on === '') {
-    throw new Error('A valid "Returned On" date must be entered.');
+    throw new Error('A valid "Returned On" date must be entered.', {
+      name: 'SequelizeValidationError'
+    });
   }
 
   Loan.update({
