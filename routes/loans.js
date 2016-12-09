@@ -93,7 +93,9 @@ router.get('/new', function(req, res, next) {
 router.post('/new', function(req, res, next) {
   Loan.create(req.body).then(function(results) {
     res.redirect("/loans/");
-  }).catch(function(error) {
+  }).catch(
+    // validation errors go here
+  ).catch(function(error) {
     res.send(500, error);
   });
 });

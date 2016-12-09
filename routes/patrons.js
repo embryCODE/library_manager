@@ -32,7 +32,9 @@ router.get('/new', function(req, res, next) {
 router.post('/new', function(req, res, next) {
   Patron.create(req.body).then(function(results) {
     res.redirect("/patrons/" + results.id);
-  }).catch(function(error) {
+  }).catch(
+    // validation errors go here
+  ).catch(function(error) {
     res.send(500, error);
   });
 });

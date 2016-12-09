@@ -74,7 +74,9 @@ router.get('/new', function(req, res, next) {
 router.post('/new', function(req, res, next) {
   Book.create(req.body).then(function(results) {
     res.redirect("/books/" + results.id);
-  }).catch(function(error) {
+  }).catch(
+    // validation errors go here
+  ).catch(function(error) {
     res.send(500, error);
   });
 });
@@ -158,7 +160,9 @@ router.put('/:id/return', function(req, res, next) {
     }
   }).then(function(results) {
     res.redirect('/loans');
-  }).catch(function(error) {
+  }).catch(
+    // validation errors go here
+  ).catch(function(error) {
     res.send(500, error);
   });
 });
