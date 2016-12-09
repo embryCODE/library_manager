@@ -145,17 +145,20 @@ router.get('/:id/return', function(req, res, next) {
 
 /** PUT return book. */
 router.put('/:id/return', function(req, res, next) {
+
+  if (req.body.returned_on === '') {
+    throw new Error('A valid "Returned On" date must be entered.');
+  }
+
   Loan.update({
-    returned_on: req.body.returned_on
+    returned_on: req.body.returned_on,
   }, {
     where: {
       book_id: req.params.id
     }
   }).then(function(results) {
     res.redirect('/loans');
-  }).catch(
-    // validation errors go here
-  ).catch(function(error) {
+  }).catch(function(error) {
     res.send(500, error);
   });
 });
