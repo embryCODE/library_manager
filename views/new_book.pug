@@ -3,6 +3,8 @@ include partials/_nav
 
 h1 New Book
 form(method="post")
+  if error
+    include partials/_error
   p
     label(for='title') Title
     input#title(type='text' name='title')

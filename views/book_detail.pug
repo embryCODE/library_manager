@@ -3,6 +3,8 @@ include partials/_nav
 
 h1 Book: #{book.title}
 form(action="?_method=PUT" method="post")
+  if error
+    include partials/_error
   p
     label(for='title') Title
     input#title(type='text' value=book.title name='title')

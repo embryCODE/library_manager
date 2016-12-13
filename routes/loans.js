@@ -99,10 +99,26 @@ router.post('/new', function(req, res, next) {
     res.redirect("/loans/");
   }).catch(function(error) {
     if (error.name === 'SequelizeValidationError') {
-      res.render('error', {
-        error: error,
-        title: "Error"
-      });
+      var allBooks, allPatrons;
+
+      Book.findAll().then(function(results) {
+        allBooks = results;
+      }).then(
+        Patron.findAll().then(function(results) {
+          allPatrons = results;
+        }).then(function() {
+          res.render('new_loan', {
+            books: allBooks,
+            patrons: allPatrons,
+            loaned_on: moment().format('YYYY-MM-DD'),
+            return_by: moment().add(7, 'days').format('YYYY-MM-DD'),
+            title: "New Loan",
+            error: error
+          });
+        }).catch(function(error) {
+          res.send(500, error);
+        })
+      );
     } else {
       res.send(500, error);
     }

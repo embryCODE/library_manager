@@ -2,6 +2,8 @@ include partials/_head
 include partials/_nav
 
 h1 Return Book:
+if error
+  include partials/_error
 p
   strong Book Title:
   |  #{loan.Book.title}

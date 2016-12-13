@@ -34,9 +34,11 @@ router.post('/new', function(req, res, next) {
     res.redirect("/patrons/");
   }).catch(function(error) {
     if (error.name === 'SequelizeValidationError') {
-      res.render('error', {
-        error: error,
-        title: "Error"
+      res.render('new_patron', {
+        title: "New Patron",
+        error: error
+      }).catch(function(error) {
+        res.send(500, error);
       });
     } else {
       res.send(500, error);
@@ -81,9 +83,23 @@ router.put('/:id', function(req, res, next) {
     res.redirect("/patrons/");
   }).catch(function(error) {
     if (error.name === 'SequelizeValidationError') {
-      res.render('error', {
-        error: error,
-        title: "Error"
+      Patron.findById(req.params.id, {
+        include: [{
+          model: Loan,
+          include: {
+            model: Book
+          }
+        }]
+      }).then(function(results) {
+        if (results) {
+          res.render('patron_detail', {
+            patron: results,
+            title: results.title,
+            error: error
+          });
+        } else {
+          res.sendStatus(404);
+        }
       });
     } else {
       res.send(500, error);

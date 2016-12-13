@@ -80,9 +80,9 @@ router.post('/new', function(req, res, next) {
     res.redirect("/books/");
   }).catch(function(error) {
     if (error.name === 'SequelizeValidationError') {
-      res.render('error', {
-        error: error,
-        title: "Error"
+      res.render('new_book', {
+        title: "New Book",
+        error: error
       });
     } else {
       res.send(500, error);
@@ -126,14 +126,24 @@ router.put('/:id', function(req, res, next) {
   }).then(function(results) {
     res.redirect("/books/");
   }).catch(function(error) {
-    if (error.name === 'SequelizeValidationError') {
-      res.render('error', {
-        error: error,
-        title: "Error"
-      });
-    } else {
-      res.send(500, error);
-    }
+    Book.findById(req.params.id, {
+      include: [{
+        model: Loan,
+        include: [{
+          model: Patron
+        }]
+      }]
+    }).then(function(results) {
+      if (results) {
+        res.render('book_detail', {
+          book: results,
+          title: results.title,
+          error: error
+        });
+      } else {
+        res.sendStatus(404);
+      }
+    });
   });
 });
 
@@ -160,14 +170,6 @@ router.get('/:id/return', function(req, res, next) {
 /** PUT return book. */
 router.put('/:id/return', function(req, res, next) {
 
-  var validDate = /^\d{4}[\/\-](0?[1-9]|1[012])[\/\-](0?[1-9]|[12][0-9]|3[01])$/;
-
-  if (!validDate.test(req.body.returned_on)) {
-    throw new Error('A valid "Returned On" date must be entered.', {
-      name: 'SequelizeValidationError'
-    });
-  }
-
   Loan.update({
     returned_on: req.body.returned_on,
   }, {
@@ -178,9 +180,22 @@ router.put('/:id/return', function(req, res, next) {
     res.redirect('/loans');
   }).catch(function(error) {
     if (error.name === 'SequelizeValidationError') {
-      res.render('error', {
-        error: error,
-        title: "Error"
+      Loan.findAll({
+        include: [{
+          model: Book,
+          where: {
+            id: req.params.id
+          },
+        }, {
+          model: Patron
+        }]
+      }).then(function(results) {
+        res.render('return_book', {
+          loan: results[0],
+          title: 'Return Book',
+          today: moment().format('YYYY-MM-DD'),
+          error: error
+        });
       });
     } else {
       res.send(500, error);

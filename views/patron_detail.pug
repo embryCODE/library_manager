@@ -3,6 +3,8 @@ include partials/_nav
 
 h1 Patron: #{patron.first_name} #{patron.last_name}
 form(action="?_method=PUT" method="post")
+  if error
+    include partials/_error
   p
     label(for='first_name') First Name
     input#first_name(type='text', value=patron.first_name name='first_name')
@@ -37,7 +39,7 @@ table
     each loan in patron.Loans
       tr
         td
-          a(href=loan.Book.id) #{loan.Book.title}
+          a(href='/books/' + loan.Book.id) #{loan.Book.title}
         td
           a(href='/patrons/' + patron.id) #{patron.first_name} #{patron.last_name}
         td #{loan.loaned_on}

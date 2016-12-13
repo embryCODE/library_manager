@@ -3,6 +3,8 @@ include partials/_nav
 
 h1 New Patron
 form(method="post")
+  if error
+    include partials/_error
   p
     label(for='first_name') First Name
     input#first_name(type='text' name='first_name')
