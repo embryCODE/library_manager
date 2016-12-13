@@ -83,6 +83,8 @@ router.post('/new', function(req, res, next) {
       res.render('new_book', {
         title: "New Book",
         error: error
+      }).catch(function(error) {
+        res.send(500, error);
       });
     } else {
       res.send(500, error);
